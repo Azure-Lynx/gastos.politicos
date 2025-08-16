@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gastos por Parlamentar</title>
+    <link rel="stylesheet" href="../css/gastos-por-parlamentar.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <nav class="breadcrumb">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <span class="separator">/</span>
+                <span class="current">Gastos por Parlamentar</span>
+            </nav>
+            <h1><i class="fas fa-chart-line"></i> Gastos por Parlamentar</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="search-section">
+                <div class="search-controls">
+                    <div class="input-group">
+                        <label for="parlamentar-search">Nome do Parlamentar:</label>
+                        <input type="text" id="parlamentar-search" placeholder="Digite o nome do parlamentar...">
+                        <div id="suggestions" class="suggestions-dropdown"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="year-select">Ano:</label>
+                        <select id="year-select">
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <button id="search-btn" class="search-button">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+
+            <div id="results-section" class="results-section" style="display: none;">
+                <div class="parlamentar-info">
+                    <div class="parlamentar-header">
+                        <img id="parlamentar-photo" class="parlamentar-photo" src="../assets/images/default.jpg" alt="Foto do parlamentar">
+                        <div class="parlamentar-details">
+                            <h2 id="parlamentar-name"></h2>
+                            <p id="parlamentar-party"></p>
+                        </div>
+                        <button id="share-btn" class="share-button" title="Compartilhar">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div id="total-expenses" class="total-expenses">
+                        <!-- Total will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="expenses-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="expenses-list">
+                    <h3><i class="fas fa-list"></i> Gasto por Categoria</h3>
+                    <div id="expenses-items" class="expenses-items">
+                        <!-- Expense items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="no-results" class="no-results" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Nenhum dado encontrado para esse nome ou ano.</p>
+            </div>
+
+            <div id="loading" class="loading" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Carregando dados...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/gastos-por-parlamentar.js"></script>
+</body>
+</html>
