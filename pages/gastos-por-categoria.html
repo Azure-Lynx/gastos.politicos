@@ -20,44 +20,37 @@
         </header>
 
         <main class="main-content">
-            <section class="filters-section">
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <label for="categoria-select"><i class="fas fa-list"></i> Categoria</label>
+            <section class="search-section">
+                <div class="search-controls">
+                    <div class="input-group">
+                        <label for="categoria-search">Nome do Parlamentar:</label>
+                        <input type="text" id="categoria-search" placeholder="Digite o nome do parlamentar...">
+                        <div id="categoria-suggestions" class="suggestions-dropdown"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="categoria-select">Categoria:</label>
                         <select id="categoria-select"></select>
                     </div>
-                    <div class="filter-group">
-                        <label for="ano-select"><i class="fas fa-calendar"></i> Ano</label>
+                    <div class="input-group">
+                        <label for="ano-select">Ano:</label>
                         <select id="ano-select"></select>
                     </div>
-                    <div class="filter-group">
-                        <label for="ordenacao-select"><i class="fas fa-sort"></i> Ordenação</label>
+                    <div class="input-group">
+                        <label for="partido-select">Partido:</label>
+                        <select id="partido-select"><option value="">Todos</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label for="estado-select">Estado:</label>
+                        <select id="estado-select"><option value="">Todos</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ordenacao-select">Ordenação:</label>
                         <select id="ordenacao-select">
                             <option value="maior">Maiores</option>
                             <option value="menor">Menores</option>
                         </select>
                     </div>
-                </div>
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <label for="partido-select"><i class="fas fa-flag"></i> Partido</label>
-                        <select id="partido-select">
-                            <option value="">Todos</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="estado-select"><i class="fas fa-map-marker-alt"></i> Estado</label>
-                        <select id="estado-select">
-                            <option value="">Todos</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="nome-search"><i class="fas fa-search"></i> Buscar por nome</label>
-                        <input type="text" id="nome-search" placeholder="Digite o nome...">
-                    </div>
-                    <div class="filter-group">
-                        <button id="limpar-filtros" class="back-button" style="background: #eee; color: #333; margin-top: 24px;"><i class="fas fa-eraser"></i> Limpar</button>
-                    </div>
+                    <button id="limpar-filtros" class="search-button" style="margin-top:24px;"><i class="fas fa-eraser"></i> Limpar</button>
                 </div>
             </section>
             <section class="ranking-header" id="ranking-header"></section>

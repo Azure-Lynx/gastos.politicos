@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const ordenacaoSelect = document.getElementById('ordenacao-select');
     const partidoSelect = document.getElementById('partido-select');
     const estadoSelect = document.getElementById('estado-select');
-    const nomeSearch = document.getElementById('nome-search');
+    const searchInput = document.getElementById('categoria-search');
+    const suggestionsDiv = document.getElementById('categoria-suggestions');
     const rankingHeader = document.getElementById('ranking-header');
     const rankingList = document.getElementById('ranking-list');
     const limparFiltrosBtn = document.getElementById('limpar-filtros');
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let listaCompleta = [];
     let listaFiltrada = [];
     let contadorAnos = {};
+    let suggestions = [];
 
     // Filtros
     let categoriaSelecionada = null;
@@ -97,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
             estadoSelect.appendChild(opt);
         });
 
+        // Suggestions for search bar
+        suggestions = Object.values(dadosParlamentares).map(p => p.nome);
+
         computeRankingForCategoryYear(categoriaSelecionada, anoSelecionado);
     });
 
@@ -134,9 +139,36 @@ document.addEventListener('DOMContentLoaded', () => {
         filtroEstado = e.target.value;
         aplicarFiltros();
     });
-    nomeSearch.addEventListener('input', e => {
-        filtroNome = e.target.value;
+    // Search bar logic with suggestions
+    searchInput.addEventListener('input', (e) => {
+        const value = e.target.value;
+        filtroNome = value;
+        if (!value) {
+            suggestionsDiv.style.display = 'none';
+            aplicarFiltros();
+            return;
+        }
+        const filtered = suggestions.filter(n => n.toLowerCase().includes(value.toLowerCase())).slice(0, 8);
+        if (filtered.length) {
+            suggestionsDiv.innerHTML = filtered.map(n => `<div class="suggestion-item">${n}</div>`).join('');
+            suggestionsDiv.style.display = 'block';
+        } else {
+            suggestionsDiv.style.display = 'none';
+        }
         aplicarFiltros();
+    });
+    suggestionsDiv.addEventListener('click', (e) => {
+        if (e.target.classList.contains('suggestion-item')) {
+            searchInput.value = e.target.textContent;
+            filtroNome = e.target.textContent;
+            suggestionsDiv.style.display = 'none';
+            aplicarFiltros();
+        }
+    });
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.input-group')) {
+            suggestionsDiv.style.display = 'none';
+        }
     });
     limparFiltrosBtn.addEventListener('click', () => {
         filtroPartido = '';
@@ -219,7 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const nome = info.nome || entry.id;
             const partido = info.partido || '';
             const uf = info.uf || '';
-            const foto = info.foto ? `../assets/images/${info.foto}` : '';
+            let foto = '';
+            if (info.foto) {
+                foto = info.foto.startsWith('http') ? info.foto : `../assets/images/${info.foto}`;
+            }
             const yearCount = contadorAnos[entry.id] || 0;
             let subtitle = `${partido} • ${uf}`;
             if (anoSelecionado === 'Todos' && yearCount > 0) subtitle += ` • ${yearCount} ano${yearCount !== 1 ? 's' : ''}`;
@@ -229,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (idx === 2) bg = 'rgba(205,127,50,0.12)';
             return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:10px 8px;border-radius:8px;margin-bottom:6px;">
                 <div class="avatar" style="width:48px;height:48px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:12px;">
-                    ${foto ? `<img src="${foto}" alt="${nome}" style="width:100%;height:100%;object-fit:cover;">` : `<span style="font-weight:bold;font-size:1.5em;">${nome[0] || '?'}</span>`}
+                    ${foto ? `<img src=\"${foto}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.5em;\">${nome[0] || '?'}<\/span>`}
                 </div>
                 <div style="flex:1;">
                     <div style="font-weight:600;font-size:1.1em;">${nome}</div>
