@@ -186,34 +186,62 @@ document.addEventListener('DOMContentLoaded', () => {
         let mapIdToValue = {};
         let mapIdToYearCount = {};
         if (year === 'Todos') {
-            // Use the 'total' field for all-time sum if available
+            // Sum across all years for each parliamentarian, skip 'total' field
             const categoryMap = rankings.categoria_ano?.[category] || {};
-            const totalMap = categoryMap['total'] || {};
-            Object.entries(totalMap).forEach(([id, value]) => {
+            if (categoryMap && Object.keys(categoryMap).length > 0) {
+                Object.entries(categoryMap).forEach(([ano, anoMap]) => {
+                    if (ano === 'total') return;
+                    Object.entries(anoMap || {}).forEach(([id, value]) => {
+                        let val = 0;
+                        if (typeof value === 'number') {
+                            val = value;
+                        } else if (typeof value === 'string') {
+                            val = parseFloat(value.replace(/\./g, '').replace(/,/g, '.')) || 0;
+                        }
+                        if (val > 0) {
+                            mapIdToValue[id] = (mapIdToValue[id] || 0) + val;
+                            mapIdToYearCount[id] = (mapIdToYearCount[id] || 0) + 1;
+                        }
+                    });
+                });
+            } else {
+                // Fallback: compute from raw data
+                Object.entries(dadosParlamentares).forEach(([id, p]) => {
+                    const gastos = p.gastos || {};
+                    let totalCategoria = 0.0;
+                    let yearCount = 0;
+                    Object.entries(gastos).forEach(([ano, anoMap]) => {
+                        if (anoMap && typeof anoMap === 'object' && anoMap.hasOwnProperty(category)) {
+                            const categoryValue = anoMap[category];
+                            let yearValue = 0.0;
+                            if (typeof categoryValue === 'number') {
+                                yearValue = categoryValue;
+                            } else if (typeof categoryValue === 'string') {
+                                yearValue = parseFloat(categoryValue.replace(/\./g, '').replace(/,/g, '.')) || 0;
+                            }
+                            if (yearValue > 0) {
+                                totalCategoria += yearValue;
+                                yearCount++;
+                            }
+                        }
+                    });
+                    if (totalCategoria > 0) {
+                        mapIdToValue[id] = totalCategoria;
+                        mapIdToYearCount[id] = yearCount;
+                    }
+                });
+            }
+        } else {
+            // Calculate for specific year
+            const categoryMap = rankings.categoria_ano?.[category] || {};
+            const yearMap = categoryMap[year] || {};
+            Object.entries(yearMap).forEach(([id, value]) => {
                 let val = 0;
                 if (typeof value === 'number') {
                     val = value;
                 } else if (typeof value === 'string') {
                     val = parseFloat(value.replace(/\./g, '').replace(/,/g, '.')) || 0;
                 }
-                if (val > 0) {
-                    mapIdToValue[id] = val;
-                }
-            });
-            // For year count, count how many years each parlamentar had > 0 in this category
-            Object.entries(categoryMap).forEach(([ano, anoMap]) => {
-                if (ano === 'total') return;
-                Object.entries(anoMap || {}).forEach(([id, value]) => {
-                    let val = parseFloat((value+'').replace(/\./g, '').replace(/,/g, '.')) || 0;
-                    if (val > 0) {
-                        mapIdToYearCount[id] = (mapIdToYearCount[id] || 0) + 1;
-                    }
-                });
-            });
-        } else {
-            const yearMap = rankings.categoria_ano?.[category]?.[year] || {};
-            Object.entries(yearMap).forEach(([id, value]) => {
-                let val = parseFloat((value+'').replace(/\./g, '').replace(/,/g, '.')) || 0;
                 mapIdToValue[id] = val;
             });
         }
