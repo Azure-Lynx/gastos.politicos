@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (idx === 2) bg = 'rgba(205,127,50,0.12)';
             return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:10px 8px;border-radius:8px;margin-bottom:6px;">
                 <div class="avatar" style="width:48px;height:48px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:12px;">
-                    ${foto ? `<img src=\"${foto}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.5em;\">${nome[0] || '?'}<\/span>`}
+                    ${imagem ? `<img src=\"${imagem}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.5em;\">${nome[0] || '?'}<\/span>`}
                 </div>
                 <div style="flex:1;">
                     <div style="font-weight:600;font-size:1.1em;">${nome}</div>
