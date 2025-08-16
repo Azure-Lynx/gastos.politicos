@@ -3,71 +3,71 @@ document.addEventListener('DOMContentLoaded', function() {
     const PARTIDO_MAP = {
         "AVANTE": {
             "nome": "Avante",
-            "urlLogo": "assets/images/AVANTE.gif"
+            "urlLogo": "../assets/images/AVANTE.gif"
         },
         "CIDADANIA": {
             "nome": "Cidadania",
-            "urlLogo": "assets/images/CIDADANIA.png"
+            "urlLogo": "../assets/images/CIDADANIA.png"
         },
         "MDB": {
             "nome": "Movimento Democrático Brasileiro",
-            "urlLogo": "assets/images/MDB.png"
+            "urlLogo": "../assets/images/MDB.png"
         },
         "NOVO": {
             "nome": "Partido Novo",
-            "urlLogo": "assets/images/NOVO.png"
+            "urlLogo": "../assets/images/NOVO.png"
         },
         "PCdoB": {
             "nome": "Partido Comunista do Brasil",
-            "urlLogo": "assets/images/PCdoB.png"
+            "urlLogo": "../assets/images/PCdoB.png"
         },
         "PDT": {
             "nome": "Partido Democrático Trabalhista",
-            "urlLogo": "assets/images/PDT.png"
+            "urlLogo": "../assets/images/PDT.png"
         },
         "PL": {
             "nome": "Partido Liberal",
-            "urlLogo": "assets/images/PL.png"
+            "urlLogo": "../assets/images/PL.png"
         },
         "PODE": {
             "nome": "Podemos",
-            "urlLogo": "assets/images/PODE.png"
+            "urlLogo": "../assets/images/PODE.png"
         },
         "PP": {
             "nome": "Progressistas",
-            "urlLogo": "assets/images/PP.png"
+            "urlLogo": "../assets/images/PP.png"
         },
         "PRD": {
             "nome": "Partido Renovação Democrática",
-            "urlLogo": "assets/images/PRD.png"
+            "urlLogo": "../assets/images/PRD.png"
         },
         "PSB": {
             "nome": "Partido Socialista Brasileiro",
-            "urlLogo": "assets/images/PSB.png"
+            "urlLogo": "../assets/images/PSB.png"
         },
         "PSD": {
             "nome": "Partido Social Democrático",
-            "urlLogo": "assets/images/PSD.png"
+            "urlLogo": "../assets/images/PSD.png"
         },
         "PSDB": {
             "nome": "Partido da Social Democracia Brasileira",
-            "urlLogo": "assets/images/PSDB.png"
+            "urlLogo": "../assets/images/PSDB.png"
         },
         "PSOL": {
             "nome": "Partido Socialismo e Liberdade",
-            "urlLogo": "assets/images/PSOL.jpg"
+            "urlLogo": "../assets/images/PSOL.jpg"
         },
         "PT": {
             "nome": "Partido dos Trabalhadores",
-            "urlLogo": "assets/images/PT.png"
+            "urlLogo": "../assets/images/PT.png"
         },
         "REPUBLICANOS": {
             "nome": "Republicanos",
-            "urlLogo": "assets/images/REPUBLICANOS.png"
+            "urlLogo": "../assets/images/REPUBLICANOS.png"
         },
         "UNIÃO": {
             "nome": "União Brasil",
-            "urlLogo": "assets/images/UNIAO.png"
+            "urlLogo": "../assets/images/UNIAO.png"
         }
     };
 
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="ranking-item" style="background: ${backgroundColor};">
                     <div class="party-logo">
                         ${urlLogo ? 
-                            `<img src="../${urlLogo}" alt="${sigla}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            `<img src="${urlLogo}" alt="${sigla}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                              <div class="party-initials" style="display:none;">${sigla.substring(0, Math.min(2, sigla.length))}</div>` :
                             `<div class="party-initials">${sigla.substring(0, Math.min(2, sigla.length))}</div>`
                         }
