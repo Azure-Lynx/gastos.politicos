@@ -304,15 +304,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (idx === 0) bg = 'rgba(255,215,0,0.12)';
             if (idx === 1) bg = 'rgba(192,192,192,0.12)';
             if (idx === 2) bg = 'rgba(205,127,50,0.12)';
-            return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:10px 8px;border-radius:8px;margin-bottom:6px;">
-                <div class="avatar" style="width:48px;height:48px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:12px;">
-                    ${imagem ? `<img src=\"${imagem}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.5em;\">${nome[0] || '?'}<\/span>`}
+            return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:20px;border-radius:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.05);transition:all 0.3s ease;">
+                <div class="ranking-position" style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#4CAF50,#45a049);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2em;margin-right:20px;">
+                    ${idx + 1}
+                </div>
+                <div class="avatar" style="width:60px;height:60px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:20px;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                    ${imagem ? `<img src=\"${imagem}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.8em;color:#4CAF50;\">${nome[0] || '?'}<\/span>`}
                 </div>
                 <div style="flex:1;">
-                    <div style="font-weight:600;font-size:1.1em;">${nome}</div>
-                    <div style="color:#555;font-size:0.95em;">${subtitle}</div>
+                    <div style="font-weight:700;font-size:1.3em;color:#333;margin-bottom:5px;">${nome}</div>
+                    <div style="color:#666;font-size:1em;display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+                        <span style="background:rgba(76,175,80,0.1);color:#2E7D32;padding:4px 12px;border-radius:20px;font-size:0.9em;font-weight:600;">${partido}</span>
+                        <span style="color:#777;">📍 ${uf}</span>
+                        ${anoSelecionado === 'Todos' && yearCount > 0 ? `<span style="color:#666;font-size:0.9em;">📅 ${yearCount} ano${yearCount !== 1 ? 's' : ''}</span>` : ''}
+                    </div>
                 </div>
-                <div style="width:110px;text-align:right;font-weight:700;">R$ ${formatCurrency(entry.value)}</div>
+                <div style="text-align:right;">
+                    <div style="font-weight:700;font-size:1.4em;color:#4CAF50;">R$ ${formatCurrency(entry.value)}</div>
+                    <div style="color:#666;font-size:0.9em;margin-top:2px;">${categoriaSelecionada || 'Categoria'}</div>
+                </div>
             </div>`;
         }).join('');
     }
