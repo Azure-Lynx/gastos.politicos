@@ -3,33 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking Médias Anuais</title>
+    <title>Ranking Médias Anuais - Gastos Políticos</title>
     <link rel="stylesheet" href="../css/ranking-medias-anuais.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2217057767518670"
-     crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="app-container">
         <header class="app-header">
-            <nav class="breadcrumb">
-                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
-                <span class="separator">/</span>
-                <span class="current">Ranking Médias Anuais</span>
+            <nav class="main-menu">
+                <a href="../index.html">Home</a>
+                <a href="gastos-por-parlamentar.html">Gastos por Parlamentar</a>
+                <a href="gastos-por-categoria.html">Gastos por Categoria</a>
+                <a href="ranking-geral.html">Ranking Geral</a>
+                <a href="ranking-medias-anuais.html" class="active">Ranking Médias Anuais</a>
+                <a href="ranking-partidos.html">Ranking Partidos</a>
             </nav>
             <h1><i class="fas fa-calendar-alt"></i> Ranking Médias Anuais</h1>
         </header>
 
         <main class="main-content">
-            <div class="coming-soon">
-                <i class="fas fa-cogs fa-3x"></i>
-                <h2>Em Desenvolvimento</h2>
-                <p>Esta página estará disponível em breve.</p>
-                <a href="../index.html" class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar ao Início
-                </a>
-            </div>
+            <section class="filters-section">
+                <div class="filters-row-1">
+                    <div class="input-group">
+                        <label for="partido-select">Partido:</label>
+                        <select id="partido-select">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="estado-select">Estado:</label>
+                        <select id="estado-select">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ordenacao-select">Ordenação:</label>
+                        <select id="ordenacao-select">
+                            <option value="maior">Maiores</option>
+                            <option value="menor">Menores</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filters-row-2">
+                    <div class="input-group">
+                        <label for="nome-input">Buscar por nome:</label>
+                        <input type="text" id="nome-input" placeholder="Digite o nome do parlamentar...">
+                        <div id="suggestions" class="suggestions-dropdown"></div>
+                    </div>
+                    <button id="limpar-filtros" class="search-button">
+                        <i class="fas fa-eraser"></i> Limpar Filtros
+                    </button>
+                </div>
+            </section>
+            
+            <section class="ranking-header" id="ranking-header"></section>
+            <section class="ranking-list" id="ranking-list"></section>
         </main>
     </div>
 
