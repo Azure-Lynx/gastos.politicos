@@ -27,34 +27,35 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.breadcrumb {
-    margin-bottom: 15px;
+.main-menu {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.main-menu a {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2E7D32;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(76, 175, 80, 0.2);
     font-size: 0.9rem;
 }
 
-.breadcrumb a {
-    color: #4CAF50;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.3s ease;
+.main-menu a:hover {
+    background: rgba(76, 175, 80, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-.breadcrumb a:hover {
-    color: #45a049;
-}
-
-.breadcrumb .separator {
-    color: #999;
-}
-
-.breadcrumb .current {
-    color: #666;
-    font-weight: 500;
+.main-menu a.active {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
 .app-header h1 {
