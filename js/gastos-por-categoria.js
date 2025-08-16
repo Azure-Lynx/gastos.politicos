@@ -190,7 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const categoryMap = rankings.categoria_ano?.[category] || {};
             const totalMap = categoryMap['total'] || {};
             Object.entries(totalMap).forEach(([id, value]) => {
-                let val = parseFloat((value+'').replace(/\./g, '').replace(/,/g, '.')) || 0;
+                let val = 0;
+                if (typeof value === 'number') {
+                    val = value;
+                } else if (typeof value === 'string') {
+                    val = parseFloat(value.replace(/\./g, '').replace(/,/g, '.')) || 0;
+                }
                 if (val > 0) {
                     mapIdToValue[id] = val;
                 }
