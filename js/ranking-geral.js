@@ -279,9 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (idx === 1) bg = 'rgba(192,192,192,0.12)';
             if (idx === 2) bg = 'rgba(205,127,50,0.12)';
             return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:20px;border-radius:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.05);transition:all 0.3s ease;">
-                <div class="ranking-position" style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#4CAF50,#45a049);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2em;margin-right:20px;">
-                    ${idx + 1}
-                </div>
                 <div class="avatar" style="width:60px;height:60px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:20px;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
                     ${imagem ? `<img src="${imagem}" alt="${nome}" style="width:100%;height:100%;object-fit:cover;">` : `<span style="font-weight:bold;font-size:1.8em;color:#4CAF50;">${nome[0] || '?'}</span>`}
                 </div>
