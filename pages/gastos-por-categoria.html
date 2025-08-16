@@ -20,14 +20,48 @@
         </header>
 
         <main class="main-content">
-            <div class="coming-soon">
-                <i class="fas fa-cogs fa-3x"></i>
-                <h2>Em Desenvolvimento</h2>
-                <p>Esta página estará disponível em breve.</p>
-                <a href="../index.html" class="back-button">
-                    <i class="fas fa-arrow-left"></i> Voltar ao Início
-                </a>
-            </div>
+            <section class="filters-section">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="categoria-select"><i class="fas fa-list"></i> Categoria</label>
+                        <select id="categoria-select"></select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="ano-select"><i class="fas fa-calendar"></i> Ano</label>
+                        <select id="ano-select"></select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="ordenacao-select"><i class="fas fa-sort"></i> Ordenação</label>
+                        <select id="ordenacao-select">
+                            <option value="maior">Maiores</option>
+                            <option value="menor">Menores</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="partido-select"><i class="fas fa-flag"></i> Partido</label>
+                        <select id="partido-select">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="estado-select"><i class="fas fa-map-marker-alt"></i> Estado</label>
+                        <select id="estado-select">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="nome-search"><i class="fas fa-search"></i> Buscar por nome</label>
+                        <input type="text" id="nome-search" placeholder="Digite o nome...">
+                    </div>
+                    <div class="filter-group">
+                        <button id="limpar-filtros" class="back-button" style="background: #eee; color: #333; margin-top: 24px;"><i class="fas fa-eraser"></i> Limpar</button>
+                    </div>
+                </div>
+            </section>
+            <section class="ranking-header" id="ranking-header"></section>
+            <section class="ranking-list" id="ranking-list"></section>
         </main>
     </div>
 
