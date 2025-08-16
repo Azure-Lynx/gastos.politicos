@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const uf = info.uf || '';
             let imagem = '';
             if (info.imagem) {
-                imagem = `../assets/images/${info.imagem}`;
+                imagem = `../${info.imagem}`;
             }
             const yearCount = contadorAnos[entry.id] || 0;
             let subtitle = `${partido} • ${uf}`;
