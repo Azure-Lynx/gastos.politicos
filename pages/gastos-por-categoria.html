@@ -11,46 +11,51 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-            <nav class="breadcrumb">
-                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
-                <span class="separator">/</span>
-                <span class="current">Gastos Por Categoria</span>
+            <nav class="main-menu">
+                <a href="../index.html">Home</a>
+                <a href="gastos-por-parlamentar.html">Gastos por Parlamentar</a>
+                <a href="gastos-por-categoria.html" class="active">Gastos por Categoria</a>
+                <a href="ranking-geral.html">Ranking Geral</a>
+                <a href="ranking-medias-anuais.html">Ranking Médias Anuais</a>
+                <a href="ranking-partidos.html">Ranking Partidos</a>
             </nav>
-            <h1><i class="fas fa-chart-pie"></i> Gastos Por Categoria</h1>
+            <h1><i class="fas fa-chart-pie"></i> Gastos por Categoria</h1>
         </header>
 
         <main class="main-content">
             <section class="search-section">
-                <div class="search-controls">
-                    <div class="input-group">
+                <div class="filters-row-1">
+                    <div class="input-group input-group-categoria">
+                        <label for="categoria-select">Categoria:</label>
+                        <select id="categoria-select"></select>
+                    </div>
+                    <div class="input-group input-group-ano">
+                        <label for="ano-select">Ano:</label>
+                        <select id="ano-select"></select>
+                    </div>
+                    <div class="input-group input-group-partido">
+                        <label for="partido-select">Partido:</label>
+                        <select id="partido-select"><option value="">Todos</option></select>
+                    </div>
+                    <div class="input-group input-group-estado">
+                        <label for="estado-select">Estado:</label>
+                        <select id="estado-select"><option value="">Todos</option></select>
+                    </div>
+                </div>
+                <div class="filters-row-2">
+                    <div class="input-group input-group-nome" style="flex:2;">
                         <label for="categoria-search">Nome do Parlamentar:</label>
                         <input type="text" id="categoria-search" placeholder="Digite o nome do parlamentar...">
                         <div id="categoria-suggestions" class="suggestions-dropdown"></div>
                     </div>
-                    <div class="input-group">
-                        <label for="categoria-select">Categoria:</label>
-                        <select id="categoria-select"></select>
-                    </div>
-                    <div class="input-group">
-                        <label for="ano-select">Ano:</label>
-                        <select id="ano-select"></select>
-                    </div>
-                    <div class="input-group">
-                        <label for="partido-select">Partido:</label>
-                        <select id="partido-select"><option value="">Todos</option></select>
-                    </div>
-                    <div class="input-group">
-                        <label for="estado-select">Estado:</label>
-                        <select id="estado-select"><option value="">Todos</option></select>
-                    </div>
-                    <div class="input-group">
+                    <div class="input-group input-group-ordenacao" style="flex:1;max-width:220px;">
                         <label for="ordenacao-select">Ordenação:</label>
                         <select id="ordenacao-select">
                             <option value="maior">Maiores</option>
                             <option value="menor">Menores</option>
                         </select>
                     </div>
-                    <button id="limpar-filtros" class="search-button" style="margin-top:24px;"><i class="fas fa-eraser"></i> Limpar</button>
+                    <button id="limpar-filtros" class="search-button" style="flex:1;max-width:180px;margin-top:28px;"><i class="fas fa-eraser"></i> Limpar</button>
                 </div>
             </section>
             <section class="ranking-header" id="ranking-header"></section>

@@ -1,3 +1,69 @@
+/* --- Main Menu Header --- */
+.main-menu {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px 0;
+}
+.main-menu a {
+    color: #4CAF50;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+.main-menu a.active, .main-menu a:hover {
+    background: #e8f5e9;
+    color: #388e3c;
+}
+
+/* --- Filters Row Layout --- */
+.filters-row-1 {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+.input-group-categoria {
+    flex: 3 1 320px;
+    min-width: 220px;
+}
+.input-group-ano, .input-group-partido, .input-group-estado {
+    flex: 1 1 120px;
+    min-width: 100px;
+    max-width: 180px;
+}
+.filters-row-2 {
+    display: flex;
+    gap: 18px;
+    align-items: flex-end;
+}
+.input-group-nome {
+    flex: 2 1 320px;
+    min-width: 220px;
+}
+.input-group-ordenacao {
+    flex: 1 1 120px;
+    min-width: 100px;
+    max-width: 180px;
+}
+#limpar-filtros.search-button {
+    flex: 1 1 120px;
+    max-width: 180px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    .filters-row-1, .filters-row-2 {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .input-group-categoria, .input-group-nome {
+        min-width: 100%;
+    }
+}
 /* Base styles from main.css */
 * {
     margin: 0;

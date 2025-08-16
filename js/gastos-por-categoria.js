@@ -171,14 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     limparFiltrosBtn.addEventListener('click', () => {
+        filtroNome = '';
         filtroPartido = '';
         filtroEstado = '';
-        filtroNome = '';
+        searchInput.value = '';
         partidoSelect.value = '';
         estadoSelect.value = '';
-        nomeSearch.value = '';
-        listaFiltrada = [...listaCompleta];
-        aplicarOrdenacao();
+        anoSelect.value = 'Todos';
+        anoSelecionado = 'Todos';
+        aplicarFiltros();
     });
 
     // Core logic
