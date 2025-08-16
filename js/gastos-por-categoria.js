@@ -251,9 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const nome = info.nome || entry.id;
             const partido = info.partido || '';
             const uf = info.uf || '';
-            let foto = '';
-            if (info.foto) {
-                foto = info.foto.startsWith('http') ? info.foto : `../assets/images/${info.foto}`;
+            let imagem = '';
+            if (info.imagem) {
+                imagem = info.imagem.startsWith('http') ? info.imagem : `../assets/images/${info.imagem}`;
             }
             const yearCount = contadorAnos[entry.id] || 0;
             let subtitle = `${partido} • ${uf}`;
