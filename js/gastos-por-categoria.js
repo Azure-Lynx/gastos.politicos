@@ -186,13 +186,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let mapIdToValue = {};
         let mapIdToYearCount = {};
         if (year === 'Todos') {
+            // Use the 'total' field for all-time sum if available
             const categoryMap = rankings.categoria_ano?.[category] || {};
+            const totalMap = categoryMap['total'] || {};
+            Object.entries(totalMap).forEach(([id, value]) => {
+                let val = parseFloat((value+'').replace(/\./g, '').replace(/,/g, '.')) || 0;
+                if (val > 0) {
+                    mapIdToValue[id] = val;
+                }
+            });
+            // For year count, count how many years each parlamentar had > 0 in this category
             Object.entries(categoryMap).forEach(([ano, anoMap]) => {
                 if (ano === 'total') return;
                 Object.entries(anoMap || {}).forEach(([id, value]) => {
                     let val = parseFloat((value+'').replace(/\./g, '').replace(/,/g, '.')) || 0;
                     if (val > 0) {
-                        mapIdToValue[id] = (mapIdToValue[id] || 0) + val;
                         mapIdToYearCount[id] = (mapIdToYearCount[id] || 0) + 1;
                     }
                 });
@@ -253,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const uf = info.uf || '';
             let imagem = '';
             if (info.imagem) {
-                imagem = info.imagem.startsWith('http') ? info.imagem : `../assets/images/${info.imagem}`;
+                imagem = `../assets/images/${info.imagem}`;
             }
             const yearCount = contadorAnos[entry.id] || 0;
             let subtitle = `${partido} • ${uf}`;
