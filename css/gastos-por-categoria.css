@@ -124,33 +124,112 @@ body {
     transform: translateY(0);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .app-container {
-        padding: 15px;
+/* --- Filters/Search Section --- */
+.search-section {
+    background: #f7f8fc;
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 24px rgba(76,175,80,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.search-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 220px;
+    min-width: 220px;
+}
+
+.input-group label {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+    font-size: 1.1rem;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.04);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #4CAF50;
+}
+
+.search-button {
+    background: #4CAF50;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.10);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.search-button:hover {
+    background: #45a049;
+    box-shadow: 0 4px 16px rgba(76,175,80,0.18);
+}
+
+.suggestions-dropdown {
+    position: absolute;
+    z-index: 10;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(76,175,80,0.10);
+    margin-top: 4px;
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+}
+
+.suggestion-item {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+}
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+.suggestion-item:hover {
+    background: #e8f5e9;
+}
+
+@media (max-width: 900px) {
+    .search-controls {
+        flex-direction: column;
+        gap: 18px;
     }
-    
-    .app-header {
-        padding: 20px;
-    }
-    
-    .app-header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .main-content {
-        padding: 25px;
-    }
-    
-    .coming-soon {
-        padding: 60px 20px;
-    }
-    
-    .coming-soon h2 {
-        font-size: 1.6rem;
-    }
-    
-    .coming-soon i {
-        font-size: 2.5rem !important;
+    .input-group {
+        min-width: 100%;
     }
 }
