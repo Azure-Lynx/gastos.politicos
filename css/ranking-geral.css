@@ -222,6 +222,7 @@ body {
     gap: 15px;
     align-items: center;
     margin-bottom: 8px;
+    justify-content: center;
 }
 
 .ranking-item .party {
@@ -259,7 +260,7 @@ body {
 .ranking-item .total {
     color: #666;
     font-size: 0.9rem;
-    text-align: right;
+    text-align: center;
     margin-top: 5px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
