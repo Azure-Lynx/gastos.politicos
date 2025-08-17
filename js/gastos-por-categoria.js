@@ -279,15 +279,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderRanking() {
         // Header
-        rankingHeader.innerHTML = `<div class="ranking-title" style="background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;font-weight:bold;">
-            ${ordenacao === 'maior' ? 'Maiores' : 'Menores'} Gastos: ${toCapitalCase(categoriaSelecionada || '-')}
-            — ${anoSelecionado === 'Todos' ? 'Todos os anos' : anoSelecionado || '-'}
-        </div>`;
+        rankingHeader.innerHTML = `
+            <h2>${ordenacao === 'maior' ? 'Maiores' : 'Menores'} Gastos: ${toCapitalCase(categoriaSelecionada || '-')}</h2>
+            <p>${anoSelecionado === 'Todos' ? 'Todos os anos' : anoSelecionado || '-'}</p>
+        `;
+        
         // List
         if (!listaFiltrada.length) {
             rankingList.innerHTML = '<div class="no-data">Nenhum dado encontrado para essa categoria/ano.</div>';
             return;
         }
+        
         rankingList.innerHTML = listaFiltrada.map((entry, idx) => {
             const info = dadosParlamentares[entry.id] || {};
             const nome = info.nome || entry.id;
@@ -298,29 +300,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagem = `../${info.imagem}`;
             }
             const yearCount = contadorAnos[entry.id] || 0;
-            let subtitle = `${partido} • ${uf}`;
-            if (anoSelecionado === 'Todos' && yearCount > 0) subtitle += ` • ${yearCount} ano${yearCount !== 1 ? 's' : ''}`;
-            let bg = '#fff';
-            if (idx === 0) bg = 'rgba(255,215,0,0.12)';
-            if (idx === 1) bg = 'rgba(192,192,192,0.12)';
-            if (idx === 2) bg = 'rgba(205,127,50,0.12)';
-            return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:20px;border-radius:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.05);transition:all 0.3s ease;">
-                <div class="avatar" style="width:60px;height:60px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:20px;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                    ${imagem ? `<img src=\"${imagem}\" alt=\"${nome}\" style=\"width:100%;height:100%;object-fit:cover;\">` : `<span style=\"font-weight:bold;font-size:1.8em;color:#4CAF50;\">${nome[0] || '?'}<\/span>`}
-                </div>
-                <div style="flex:1;">
-                    <div style="font-weight:700;font-size:1.3em;color:#333;margin-bottom:5px;">${nome}</div>
-                    <div style="color:#666;font-size:1em;display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
-                        <span style="background:rgba(76,175,80,0.1);color:#2E7D32;padding:4px 12px;border-radius:20px;font-size:0.9em;font-weight:600;">${partido}</span>
-                        <span style="color:#777;">📍 ${uf}</span>
-                        ${anoSelecionado === 'Todos' && yearCount > 0 ? `<span style="color:#666;font-size:0.9em;">📅 ${yearCount} ano${yearCount !== 1 ? 's' : ''}</span>` : ''}
+            
+            return `
+                <div class="ranking-item">
+                    ${imagem ? 
+                        `<img src="${imagem}" alt="${nome}" class="avatar">` : 
+                        `<div class="avatar"><span>${nome[0] || '?'}</span></div>`
+                    }
+                    <div class="info">
+                        <div class="name">${nome}</div>
+                        <div class="details">
+                            <span class="party">${partido}</span>
+                            <span class="state"><i class="fas fa-map-marker-alt"></i> ${uf}</span>
+                            ${anoSelecionado === 'Todos' && yearCount > 0 ? 
+                                `<span class="year"><i class="fas fa-calendar-alt"></i> ${yearCount} ano${yearCount !== 1 ? 's' : ''}</span>` : 
+                                ''
+                            }
+                        </div>
+                    </div>
+                    <div>
+                        <div class="amount">R$ ${formatCurrency(entry.value)}</div>
+                        <div class="category">${categoriaSelecionada || 'Categoria'}</div>
                     </div>
                 </div>
-                <div style="text-align:right;">
-                    <div style="font-weight:700;font-size:1.4em;color:#4CAF50;">R$ ${formatCurrency(entry.value)}</div>
-                    <div style="color:#666;font-size:0.9em;margin-top:2px;">${categoriaSelecionada || 'Categoria'}</div>
-                </div>
-            </div>`;
+            `;
         }).join('');
     }
 });
