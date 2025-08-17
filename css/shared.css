@@ -154,3 +154,97 @@ body {
         font-size: 2.5rem !important;
     }
 }
+
+/* Floating Coffee Button */
+.floating-coffee-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #FFDD44, #FF6B35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 3px solid white;
+}
+
+.floating-coffee-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+}
+
+.floating-coffee-btn i {
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip */
+.floating-coffee-btn::before {
+    content: "Apoie o projeto!";
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(51, 51, 51, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    backdrop-filter: blur(10px);
+}
+
+.floating-coffee-btn::after {
+    content: "";
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: rgba(51, 51, 51, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.floating-coffee-btn:hover::before,
+.floating-coffee-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .floating-coffee-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .floating-coffee-btn i {
+        font-size: 20px;
+    }
+    
+    .floating-coffee-btn::before {
+        right: 60px;
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .floating-coffee-btn::after {
+        right: 50px;
+        border-width: 5px;
+    }
+}
