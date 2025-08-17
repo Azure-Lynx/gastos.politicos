@@ -294,10 +294,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const orderLabel = ordenacao === 'maior' ? 'Maiores' : 'Menores';
         
         rankingHeader.innerHTML = `
-            <div class="ranking-title">
-                <i class="fas fa-flag"></i>
-                Ranking Gastos por Partidos — ${yearLabel} (${orderLabel} Gastos)
-            </div>
+            <h2><i class="fas fa-flag"></i> Ranking Gastos por Partidos</h2>
+            <p>${yearLabel} (${orderLabel} Gastos)</p>
         `;
 
         // List

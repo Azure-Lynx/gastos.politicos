@@ -156,7 +156,23 @@ body {
 
 /* Ranking header and list */
 .ranking-header {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
     margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+}
+
+.ranking-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.ranking-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 .ranking-title {
@@ -181,18 +197,18 @@ body {
 
 .ranking-item {
     background: white;
+    border-radius: 12px;
+    padding: 20px;
     display: flex;
     align-items: center;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
+    border: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 .ranking-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
 .party-logo {

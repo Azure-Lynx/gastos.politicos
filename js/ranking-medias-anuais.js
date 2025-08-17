@@ -190,14 +190,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderRanking() {
         // Header
-        rankingHeader.innerHTML = `<div class="ranking-title" style="background:#e8f5e9;padding:12px;border-radius:8px;text-align:center;font-weight:bold;display:flex;align-items:center;justify-content:center;gap:8px;">
-            <i class="fas fa-calendar-alt" style="color:#4CAF50;"></i>
-            Ranking Médias Anuais (${ordenacao === 'maior' ? 'Maiores' : 'Menores'})
-        </div>`;
+        rankingHeader.innerHTML = `
+            <h2><i class="fas fa-calendar-alt"></i> Ranking Médias Anuais</h2>
+            <p>${ordenacao === 'maior' ? 'Maiores' : 'Menores'} Médias</p>
+        `;
 
         // List
         if (!listaFiltrada.length) {
-            rankingList.innerHTML = '<div class="no-data" style="text-align:center;color:#666;padding:40px;">Nenhum dado encontrado.</div>';
+            rankingList.innerHTML = '<div class="no-data">Nenhum dado encontrado.</div>';
             return;
         }
 
@@ -210,28 +210,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 imagem = `../${entry.imagem}`;
             }
 
-            let bg = '#fff';
-            if (idx === 0) bg = 'rgba(255,215,0,0.12)';
-            if (idx === 1) bg = 'rgba(192,192,192,0.12)';
-            if (idx === 2) bg = 'rgba(205,127,50,0.12)';
-
-            return `<div class="ranking-item" style="background:${bg};display:flex;align-items:center;padding:20px;border-radius:15px;margin-bottom:15px;box-shadow:0 4px 15px rgba(0,0,0,0.05);transition:all 0.3s ease;">
-                <div class="avatar" style="width:60px;height:60px;border-radius:50%;background:#eee;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-right:20px;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                    ${imagem ? `<img src="${imagem}" alt="${nome}" style="width:100%;height:100%;object-fit:cover;">` : `<span style="font-weight:bold;font-size:1.8em;color:#4CAF50;">${nome[0] || '?'}</span>`}
-                </div>
-                <div style="flex:1;">
-                    <div style="font-weight:700;font-size:1.3em;color:#333;margin-bottom:5px;">${nome}</div>
-                    <div style="color:#666;font-size:1em;display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
-                        <span style="background:rgba(76,175,80,0.1);color:#2E7D32;padding:4px 12px;border-radius:20px;font-size:0.9em;font-weight:600;">${partido}</span>
-                        <span style="color:#777;">📍 ${uf}</span>
-                        <span style="color:#666;font-size:0.9em;">📅 ${entry.anosComRegistro} ano${entry.anosComRegistro !== 1 ? 's' : ''}</span>
+            return `
+                <div class="ranking-item">
+                    ${imagem ? 
+                        `<img src="${imagem}" alt="${nome}" class="avatar">` : 
+                        `<div class="avatar"><span>${nome[0] || '?'}</span></div>`
+                    }
+                    <div class="info">
+                        <div class="name">${nome}</div>
+                        <div class="details">
+                            <span class="party">${partido}</span>
+                            <span class="state"><i class="fas fa-map-marker-alt"></i> ${uf}</span>
+                            <span class="state"><i class="fas fa-calendar-alt"></i> ${entry.anosComRegistro} ano${entry.anosComRegistro !== 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="amount">R$ ${formatCurrency(entry.mediaAnual)}</div>
+                        <div class="average">Média anual</div>
                     </div>
                 </div>
-                <div style="text-align:right;">
-                    <div style="font-weight:700;font-size:1.4em;color:#4CAF50;">R$ ${formatCurrency(entry.mediaAnual)}</div>
-                    <div style="color:#666;font-size:0.9em;margin-top:2px;">Média anual</div>
-                </div>
-            </div>`;
+            `;
         }).join('');
     }
 
