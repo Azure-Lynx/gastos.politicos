@@ -25,39 +25,43 @@
         </header>
 
         <main class="main-content">
-            <section class="search-section">
+            <section class="filters-section">
                 <div class="filters-row-1">
-                    <div class="input-group input-group-categoria">
+                    <div class="input-group">
                         <label for="categoria-select">Categoria:</label>
                         <select id="categoria-select"></select>
                     </div>
-                    <div class="input-group input-group-ano">
+                    <div class="input-group">
                         <label for="ano-select">Ano:</label>
                         <select id="ano-select"></select>
                     </div>
-                    <div class="input-group input-group-partido">
+                    <div class="input-group">
                         <label for="partido-select">Partido:</label>
                         <select id="partido-select"><option value="">Todos</option></select>
                     </div>
-                    <div class="input-group input-group-estado">
-                        <label for="estado-select">Estado:</label>
-                        <select id="estado-select"><option value="">Todos</option></select>
-                    </div>
                 </div>
                 <div class="filters-row-2">
-                    <div class="input-group input-group-nome" style="flex:2;">
+                    <div class="input-group">
                         <label for="categoria-search">Nome do Parlamentar:</label>
                         <input type="text" id="categoria-search" placeholder="Digite o nome do parlamentar...">
                         <div id="categoria-suggestions" class="suggestions-dropdown"></div>
                     </div>
-                    <div class="input-group input-group-ordenacao" style="flex:1;max-width:220px;">
+                    <div class="input-group">
+                        <label for="estado-select">Estado:</label>
+                        <select id="estado-select"><option value="">Todos</option></select>
+                    </div>
+                    <div class="input-group">
                         <label for="ordenacao-select">Ordenação:</label>
                         <select id="ordenacao-select">
                             <option value="maior">Maiores</option>
                             <option value="menor">Menores</option>
                         </select>
                     </div>
-                    <button id="limpar-filtros" class="search-button" style="flex:1;max-width:180px;margin-top:28px;"><i class="fas fa-eraser"></i> Limpar</button>
+                    <button id="limpar-filtros" class="search-button">
+                        <i class="fas fa-eraser"></i> Limpar Filtros
+                    </button>
+                </div>
+            </section>
                 </div>
             </section>
             <section class="ranking-header" id="ranking-header"></section>

@@ -30,10 +30,14 @@
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
-/* --- Filters Row Layout --- */
+/* Filters Section */
+.filters-section {
+    margin-bottom: 30px;
+}
+
 .filters-row-1 {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     margin-bottom: 20px;
     align-items: end;
@@ -41,17 +45,9 @@
 
 .filters-row-2 {
     display: grid;
-    grid-template-columns: 2fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr auto;
     gap: 20px;
     align-items: end;
-}
-
-@media (max-width: 768px) {
-    .filters-row-1,
-    .filters-row-2 {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
 }
 
 /* Base styles from main.css */
@@ -297,6 +293,7 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .main-menu {
         flex-direction: column;
@@ -307,6 +304,12 @@ body {
         width: 100%;
         text-align: center;
         max-width: 300px;
+    }
+    
+    .filters-row-1,
+    .filters-row-2 {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .ranking-item {
@@ -322,5 +325,23 @@ body {
     
     .ranking-item > div:last-child {
         margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 15px;
+    }
+    
+    .app-header {
+        padding: 20px;
+    }
+    
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .main-content {
+        padding: 25px;
     }
 }
