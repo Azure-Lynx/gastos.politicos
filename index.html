@@ -112,5 +112,29 @@
     <a href="https://buymeacoffee.com/gastos.politicos" target="_blank" class="floating-coffee-btn">
         <i class="fas fa-coffee"></i>
     </a>
+
+    <script>
+        // Auto-show tooltip on mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            function isMobile() {
+                return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+            
+            if (isMobile()) {
+                const coffeeBtn = document.querySelector('.floating-coffee-btn');
+                if (coffeeBtn) {
+                    // Add mobile-show class after a small delay
+                    setTimeout(() => {
+                        coffeeBtn.classList.add('mobile-show');
+                        
+                        // Remove the class after 3 seconds
+                        setTimeout(() => {
+                            coffeeBtn.classList.remove('mobile-show');
+                        }, 3000);
+                    }, 500);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

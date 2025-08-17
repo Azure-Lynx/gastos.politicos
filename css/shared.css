@@ -247,4 +247,32 @@ body {
         right: 50px;
         border-width: 5px;
     }
+    
+    /* Auto-show tooltip on mobile for 3 seconds */
+    .floating-coffee-btn.mobile-show::before,
+    .floating-coffee-btn.mobile-show::after {
+        opacity: 1;
+        visibility: visible;
+        animation: mobileTooltipShow 3s ease-in-out;
+    }
+}
+
+/* Mobile tooltip animation */
+@keyframes mobileTooltipShow {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    10% {
+        opacity: 1;
+        visibility: visible;
+    }
+    90% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
