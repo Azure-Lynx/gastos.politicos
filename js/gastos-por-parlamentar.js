@@ -12,6 +12,8 @@ class ParlamentarApp {
         this.setupEventListeners();
         this.populateYearSelect();
         this.showLoading(false);
+        // Load random parlamentar and year by default
+        this.loadRandomParlamentar();
     }
 
     async loadData() {
@@ -72,6 +74,35 @@ class ParlamentarApp {
             }
             yearSelect.appendChild(option);
         }
+    }
+
+    loadRandomParlamentar() {
+        // Get all parlamentares that have data
+        const parlamentares = Object.values(this.data);
+        
+        if (parlamentares.length === 0) {
+            return;
+        }
+
+        // Select a random parlamentar
+        const randomParlamentar = parlamentares[Math.floor(Math.random() * parlamentares.length)];
+        
+        // Get available years for this parlamentar
+        const availableYears = Object.keys(randomParlamentar.gastos);
+        
+        if (availableYears.length === 0) {
+            return;
+        }
+
+        // Select a random year from available years
+        const randomYear = availableYears[Math.floor(Math.random() * availableYears.length)];
+        
+        // Set the form values
+        document.getElementById('parlamentar-search').value = randomParlamentar.nome;
+        document.getElementById('year-select').value = randomYear;
+        
+        // Display the results
+        this.displayResults(randomParlamentar, randomYear);
     }
 
     showSuggestions(query) {
