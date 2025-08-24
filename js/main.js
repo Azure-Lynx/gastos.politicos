@@ -81,13 +81,17 @@ class CongressApp {
         const yearSelect = document.getElementById('congress-year-select');
         const currentYear = new Date().getFullYear();
         
+        // Add total option first
+        const totalOption = document.createElement('option');
+        totalOption.value = 'total';
+        totalOption.textContent = 'Total 2008-2025';
+        totalOption.selected = true; // Select total by default
+        yearSelect.appendChild(totalOption);
+        
         for (let year = 2008; year <= currentYear; year++) {
             const option = document.createElement('option');
             option.value = year;
             option.textContent = year;
-            if (year === currentYear) {
-                option.selected = true;
-            }
             yearSelect.appendChild(option);
         }
     }
@@ -114,41 +118,86 @@ class CongressApp {
 
     aggregateCongressData(year) {
         const aggregatedData = {};
+        let processedCount = 0;
         
         // Iterate through all parliamentarians
         Object.values(this.data).forEach(parlamentar => {
-            if (parlamentar.gastos[year]) {
-                Object.entries(parlamentar.gastos[year]).forEach(([category, value]) => {
-                    if (aggregatedData[category]) {
-                        aggregatedData[category] += value;
-                    } else {
-                        aggregatedData[category] = value;
+            if (!parlamentar.gastos) return; // Skip if no gastos data
+            
+            if (year === 'total') {
+                // Aggregate all years
+                Object.values(parlamentar.gastos).forEach(yearData => {
+                    if (yearData && typeof yearData === 'object') {
+                        Object.entries(yearData).forEach(([category, value]) => {
+                            // Validate that value is a number
+                            if (typeof value === 'number' && !isNaN(value) && value >= 0) {
+                                if (aggregatedData[category]) {
+                                    aggregatedData[category] += value;
+                                } else {
+                                    aggregatedData[category] = value;
+                                }
+                                processedCount++;
+                            }
+                        });
                     }
                 });
+            } else {
+                // Aggregate specific year
+                if (parlamentar.gastos[year] && typeof parlamentar.gastos[year] === 'object') {
+                    Object.entries(parlamentar.gastos[year]).forEach(([category, value]) => {
+                        // Validate that value is a number
+                        if (typeof value === 'number' && !isNaN(value) && value >= 0) {
+                            if (aggregatedData[category]) {
+                                aggregatedData[category] += value;
+                            } else {
+                                aggregatedData[category] = value;
+                            }
+                            processedCount++;
+                        }
+                    });
+                }
             }
         });
 
+        console.log(`Processed ${processedCount} expense entries for ${year === 'total' ? 'all years' : year}`);
+        console.log(`Found ${Object.keys(aggregatedData).length} expense categories`);
+        
         return aggregatedData;
     }
 
     displayCongressResults(expenses, year) {
-        // Show results section
+        // Hide no results and show results section
+        document.getElementById('congress-no-results').style.display = 'none';
         document.getElementById('congress-results-section').style.display = 'block';
 
         // Update congress info
-        document.getElementById('congress-year-info').textContent = `Ano: ${year}`;
+        if (year === 'total') {
+            document.getElementById('congress-year-info').textContent = 'Período: 2008-2025 (Total)';
+        } else {
+            document.getElementById('congress-year-info').textContent = `Ano: ${year}`;
+        }
 
         // Calculate and display total
         const total = Object.values(expenses).reduce((sum, value) => sum + value, 0);
         
-        document.getElementById('congress-total-expenses').innerHTML = 
-            `Total gasto em ${year}: R$ ${this.formatCurrency(total)}`;
+        if (year === 'total') {
+            document.getElementById('congress-total-expenses').innerHTML = 
+                `Total gasto de 2008 a 2025: R$ ${this.formatCurrency(total)}`;
+        } else {
+            document.getElementById('congress-total-expenses').innerHTML = 
+                `Total gasto em ${year}: R$ ${this.formatCurrency(total)}`;
+        }
 
         // Display expenses list
         this.displayExpensesList(expenses);
         
         // Display chart
         this.displayChart(expenses);
+    }
+
+    showNoResults() {
+        document.getElementById('congress-results-section').style.display = 'none';
+        document.getElementById('congress-no-results').style.display = 'block';
     }
 
     displayExpensesList(expenses) {

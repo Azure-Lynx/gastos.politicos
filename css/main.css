@@ -737,6 +737,22 @@ body {
     font-size: 1.1rem;
 }
 
+.congress-no-results {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.congress-no-results i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ff9800;
+}
+
+.congress-no-results p {
+    font-size: 1.1rem;
+}
+
 /* Category color classes for congress expenses */
 .category-assinatura { background-color: #4CAF50; }
 .category-combustiveis { background-color: #FF9800; }
