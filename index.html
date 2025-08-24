@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/shared.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2243080862412586"
      crossorigin="anonymous"></script>
 </head>
@@ -102,6 +103,54 @@
                     </div>
                 </div>
             </section>
+
+            <section class="congress-expenses-section">
+                <h2><i class="fas fa-landmark"></i> Gastos do Congresso Nacional</h2>
+                <p>Explore os gastos totais do Congresso Nacional por ano e categoria. Análise consolidada de todas as despesas parlamentares.</p>
+                
+                <div class="congress-controls">
+                    <div class="year-selector">
+                        <label for="congress-year-select">Selecione o Ano:</label>
+                        <select id="congress-year-select">
+                            <!-- Years will be populated by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+
+                <div id="congress-results-section" class="congress-results-section" style="display: none;">
+                    <div class="congress-info">
+                        <div class="congress-header">
+                            <div class="congress-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div class="congress-details">
+                                <h3 id="congress-title">Congresso Nacional</h3>
+                                <p id="congress-year-info"></p>
+                            </div>
+                        </div>
+                        
+                        <div id="congress-total-expenses" class="congress-total-expenses">
+                            <!-- Total will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="congress-chart-container">
+                            <canvas id="congress-expenses-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="congress-expenses-list">
+                        <h3><i class="fas fa-list"></i> Gastos por Categoria</h3>
+                        <div id="congress-expenses-items" class="congress-expenses-items">
+                            <!-- Expense items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="congress-loading" class="congress-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando dados...</p>
+                </div>
+            </section>
         </main>
 
         <footer class="app-footer">
@@ -137,5 +186,7 @@
             }
         });
     </script>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
